@@ -3,19 +3,31 @@ import 'package:timber/model/Profiles.dart';
 import 'package:timber/screens/DetailledProfileScreen.dart';
 
 class LikedProfileScreen extends StatelessWidget {
-  static const List<Profile> LikedProfiles = [
+  static List<Profile> LikedProfiles = [
     Profile(
         nom: "Huscarl",
         prenom: "Lydia",
         description: "i am sworn to carry your burdens",
         picture: "pic/Lydia_Housecarl.png",
-        departement: "95"),
+        departement: "95",
+        liked: true,
+        pictures: [
+          "pic/Lydia_Housecarl.png",
+          "pic/Lydia_Housecarl.png",
+          "pic/Lydia_Housecarl.png",
+        ]),
     Profile(
         nom: "Huscarl",
         prenom: "Lydia",
         description: "i am sworn to carry your burdens",
         picture: "pic/Lydia_Housecarl.png",
-        departement: "95"),
+        departement: "95",
+        liked: true,
+        pictures: [
+          "pic/Lydia_Housecarl.png",
+          "pic/Lydia_Housecarl.png",
+          "pic/Lydia_Housecarl.png",
+        ]),
   ];
 
   const LikedProfileScreen({Key? key}) : super(key: key);
@@ -31,8 +43,8 @@ class LikedProfileScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => DetailledProfilePage(
-                            nom: LikedProfiles[index].nom,
-                            prenom: LikedProfiles[index].prenom)),
+                              profile: LikedProfiles[index],
+                            )),
                   ),
               title: Text(LikedProfiles[index].nom),
               subtitle: Text(LikedProfiles[index].prenom),

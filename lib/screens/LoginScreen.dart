@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../components/customFormField.dart';
-import 'LikedProfileScren.dart';
+import 'MainScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      title: "Tinber",
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
+        appBar: AppBar(title: Text(DateTime.now().toIso8601String())),
         body: const LoginForm(),
       ),
     );
@@ -34,54 +32,58 @@ class _LoginFormStatefulWidgetState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    child:
-    return Form(
-        key: _formKey,
-        child: SizedBox(
-          width: 250,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // A facto
-              const CustomFormField(
-                hintText: "login",
-                errorText: "Entrer votre mot de passe",
-              ),
+    return Center(
+      child: Form(
+          key: _formKey,
+          child: SizedBox(
+            width: 250,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // A facto
+                const CustomFormField(
+                  hintText: "login",
+                  errorText: "Entrer votre mot de passe",
+                ),
 
-              const CustomFormField(
-                hintText: "Mot  de passe",
-                errorText: "mdp incorrect",
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LikedProfileScreen()),
-                      );
-                    },
-                    child: const Text('Se connecter'),
+                CustomFormField(
+                  hintText: "Mot  de passe",
+                  errorText: "mdp incorrect",
+                  validator: (val) {
+                    if (val != null && val.length < 0)
+                      return 'Enter valid email';
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MainScreen()),
+                        );
+                      },
+                      child: const Text('Se connecter'),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // if (_formKey.currentState!.validate()) {
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // if (_formKey.currentState!.validate()) {
 
-                      //}
-                    },
-                    child: const Text('S\'inscrire'),
+                        //}
+                      },
+                      child: const Text('S\'inscrire'),
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-        ));
+                )
+              ],
+            ),
+          )),
+    );
   }
 }

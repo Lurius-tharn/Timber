@@ -4,11 +4,14 @@ class Profile {
   final String description;
   final String departement;
   final String picture;
+  final List<String> pictures;
+  bool liked;
 
-  const Profile(
-      {required this.nom,
-      required this.prenom,
-      required this.description,
-      required this.picture,
-      required this.departement});
+  Profile({required this.nom,
+    required this.prenom,
+    required this.description,
+    required this.picture,
+    required this.departement,
+    required this.liked,
+    required this.pictures});
 }

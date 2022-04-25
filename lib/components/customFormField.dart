@@ -27,7 +27,6 @@ class CustomFormField extends StatelessWidget {
             validator: validator,
             decoration: InputDecoration(
                 hintText: hintText,
-                errorText: errorText,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 10.0)),
           ),
         )

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:timber/screens/LikedProfileScren.dart';
+import 'package:timber/screens/LoginScreen.dart';
+
+import '../model/Profiles.dart';
 
 class DetailledProfilePage extends StatelessWidget {
-  final String nom;
-  final String prenom;
+  final Profile profile;
 
-  const DetailledProfilePage(
-      {Key? key, required this.nom, required this.prenom})
+  const DetailledProfilePage({Key? key, required this.profile})
       : super(key: key);
 
   @override
@@ -14,14 +16,23 @@ class DetailledProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.connect_without_contact)),
-        title: Text('$nom $prenom'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LikedProfileScreen()),
+              );
+            },
+            icon: const Icon(Icons.connect_without_contact)),
+        title: Text('${profile.nom} ${profile.prenom}'),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.connect_without_contact)),
-          IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
               icon: const Icon(Icons.connect_without_contact)),
         ],
       ),
@@ -33,14 +44,20 @@ class DetailledProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
-              children: [Text(nom), Text(prenom)],
+              children: [Text(profile.nom), Text(profile.prenom)],
             ),
             Image.asset(
-              'pic/Lydia_Housecarl.png',
+              profile.picture,
               height: 170,
               width: 170,
             ),
           ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Center(
+            child: Text(profile.description),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
