@@ -34,15 +34,11 @@ class SwipeScreen extends StatelessWidget {
                             IconButton(
                                 icon: const Icon(Icons.arrow_back),
                                 tooltip: 'Dislike Ew',
-                                onPressed: () {
-                                  profile.liked = false;
-                                }),
+                                onPressed: () {}),
                             IconButton(
                                 icon: const Icon(Icons.arrow_forward),
                                 tooltip: 'Like ! ',
-                                onPressed: () {
-                                  profile.liked = true;
-                                }),
+                                onPressed: () {}),
                           ],
                         ),
                       ),

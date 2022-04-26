@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField(
       {Key? key,
+      required this.myController,
       required this.hintText,
       required this.errorText,
       this.validator})
@@ -11,6 +11,7 @@ class CustomFormField extends StatelessWidget {
   final String errorText;
   final String hintText;
   final String? Function(String?)? validator;
+  final TextEditingController myController;
 
   @override
   Widget build(BuildContext context) {

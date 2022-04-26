@@ -7,6 +7,7 @@ import '../model/Profiles.dart';
 class DetailledProfilePage extends StatelessWidget {
   final Profile profile;
 
+
   const DetailledProfilePage({Key? key, required this.profile})
       : super(key: key);
 
@@ -38,41 +39,41 @@ class DetailledProfilePage extends StatelessWidget {
       ),
       body: Center(
           child: Column(children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              children: [Text(profile.nom), Text(profile.prenom)],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  children: [Text(profile.nom), Text(profile.prenom)],
+                ),
+                Image.asset(
+                  profile.picture,
+                  height: 170,
+                  width: 170,
+                ),
+              ],
             ),
-            Image.asset(
-              profile.picture,
-              height: 170,
-              width: 170,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(
+                child: Text(profile.description),
+              ),
             ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Center(
-            child: Text(profile.description),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // if (_formKey.currentState!.validate()) {
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // if (_formKey.currentState!.validate()) {
 
-                //}
-              },
-              child: const Text('Contacter'),
-            ),
-          ),
-        )
-      ])),
+                    //}
+                  },
+                  child: const Text('Contacter'),
+                ),
+              ),
+            )
+          ])),
     );
   }
 }

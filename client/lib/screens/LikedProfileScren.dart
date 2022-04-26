@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:timber/model/Profiles.dart';
 import 'package:timber/screens/DetailledProfileScreen.dart';
 
+import '../model/Departement.dart';
+
 class LikedProfileScreen extends StatelessWidget {
   static List<Profile> LikedProfiles = [
     Profile(
@@ -9,8 +11,7 @@ class LikedProfileScreen extends StatelessWidget {
         prenom: "Lydia",
         description: "i am sworn to carry your burdens",
         picture: "pic/Lydia_Housecarl.png",
-        departement: "95",
-        liked: true,
+        departement: Departement(num: 95, nom: "", ville: ""),
         pictures: [
           "pic/Lydia_Housecarl.png",
           "pic/Lydia_Housecarl.png",
@@ -21,8 +22,7 @@ class LikedProfileScreen extends StatelessWidget {
         prenom: "Lydia",
         description: "i am sworn to carry your burdens",
         picture: "pic/Lydia_Housecarl.png",
-        departement: "95",
-        liked: true,
+        departement: Departement(num: 95, nom: "", ville: ""),
         pictures: [
           "pic/Lydia_Housecarl.png",
           "pic/Lydia_Housecarl.png",
@@ -48,7 +48,7 @@ class LikedProfileScreen extends StatelessWidget {
                   ),
               title: Text(LikedProfiles[index].nom),
               subtitle: Text(LikedProfiles[index].prenom),
-              leading: Text(LikedProfiles[index].departement));
+              leading: Text(LikedProfiles[index].departement.num.toString()));
         });
   }
 }
