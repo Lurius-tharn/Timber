@@ -1,54 +1,36 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:timber/model/Profiles.dart';
+import 'package:timber/database/bdd_controller.dart';
 import 'package:timber/screens/DetailledProfileScreen.dart';
 
-import '../model/Departement.dart';
-
 class LikedProfileScreen extends StatelessWidget {
-  static List<Profile> LikedProfiles = [
-    Profile(
-        nom: "Huscarl",
-        prenom: "Lydia",
-        description: "i am sworn to carry your burdens",
-        picture: "pic/Lydia_Housecarl.png",
-        departement: Departement(num: 95, nom: "", ville: ""),
-        pictures: [
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-        ]),
-    Profile(
-        nom: "Huscarl",
-        prenom: "Lydia",
-        description: "i am sworn to carry your burdens",
-        picture: "pic/Lydia_Housecarl.png",
-        departement: Departement(num: 95, nom: "", ville: ""),
-        pictures: [
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-        ]),
-  ];
+  // ignore: prefer_typing_uninitialized_variables
+  final userId;
 
-  const LikedProfileScreen({Key? key}) : super(key: key);
+  const LikedProfileScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return ListView.builder(
-        itemCount: LikedProfiles.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-              onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailledProfilePage(
-                              profile: LikedProfiles[index],
-                            )),
-                  ),
-              title: Text(LikedProfiles[index].nom),
-              subtitle: Text(LikedProfiles[index].prenom),
-              leading: Text(LikedProfiles[index].departement.num.toString()));
+    return FutureBuilder(
+        future: BddController().getLikedMembers(userId),
+        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+          return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                    onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailledProfilePage(
+                                    profile: snapshot.data![index],
+                                  )),
+                        ),
+                    title: Text(snapshot.data![index].nom),
+                    subtitle: Text(snapshot.data![index].prenom),
+                    leading:
+                        Text(snapshot.data![index].departement.num.toString()));
+              });
         });
   }
 }

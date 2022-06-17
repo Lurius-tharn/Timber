@@ -2,75 +2,87 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:mysql1/mysql1.dart';
 import 'package:timber/model/Departement.dart';
 
 import '../model/Profiles.dart';
 
 class BddController {
-  getCon() async {
-    final conn = await MySqlConnection.connect(ConnectionSettings(
-        host: '10.0.2.2', port: 3306, user: 'root', db: 'Timber'));
-    return conn;
+  Future<int> login(login, password) async {
+    String baseUrl = "http://10.0.2.2:4548/Timber/connecter/$login/$password";
+    var response = await http.get(Uri.parse(baseUrl));
+    var json = jsonDecode(response.body);
+    return json[0]["id"];
   }
 
-  Future<bool> getUser(login, password) async {
-    var isExist = false;
-    String baseUrl =
-        "http://10.0.2.2:4548/Timber/connecter?login=%$login&password=$password";
+  Future<Profile> getUserFromId(var userID) async {
+    String baseUrl = "http://10.0.2.2:4548/Timber/membres/$userID";
 
     var response = await http.get(Uri.parse(baseUrl));
-
-    log(response.body);
-    if (response.body.isNotEmpty) {
-      isExist = true;
-      return isExist;
-    } else {
-      return false;
-    }
+    var json = jsonDecode(response.body);
+    return usersMapper(json);
   }
 
-  Future<List<dynamic>> getUsers() async {
+  Profile usersMapper(var json) {
+    Departement dept = Departement(num: 0, nom: "", ville: "");
+    String pics = json["pictures"];
+    getDepartementData(json["dept"]).then((value) =>
+        dept = Departement(num: value.num, nom: value.nom, ville: value.ville));
+    return Profile(
+        userId: json["id"],
+        nom: json["nom"],
+        prenom: json["prenom"],
+        description: json["description"],
+        picture: json["photo"],
+        departement: dept,
+        pictures: pics.split(","));
+  }
+
+  Future<List<Profile>> getUsers() async {
     List<Profile> listeProfiles = [];
     String baseUrl = "http://10.0.2.2:4548/Timber/membres";
 
     var response = await http.get(Uri.parse(baseUrl));
     log(response.body);
 
-    return jsonDecode(response.body);
-  }
-/*var isExist = false;
-    final conn = await MySqlConnection.connect(ConnectionSettings(
-        host: 'localhost', port: 3306, user: 'root', db: 'Timber'));
-
-    var result = await conn.query(
-        'select nom where login = ? AND password = ?', [login, password]);
-
-    return result.isNotEmpty;*/
-
-  Future<Departement> getDepartementData(var num) async {
-    var result = await getCon()
-        .query('select num, nom, ville,from users where num = ?', [num]);
-
-    return Departement(num: result[0], nom: result[1], ville: result[2]);
-  }
-
-  Future<List<dynamic>> getMembersData() async {
-    List<Profile> malist = [];
-
-    var results = await getCon().query(
-        'select nom, prenom, description, picture, dept, pictures from membre where id = ?',
-        [1]);
-    for (var row in results) {
-      malist.add(Profile(
-        nom: row[0],
-        prenom: row[1],
-        description: row[2],
-        picture: row[3],
-        departement: Departement(num: row[4], nom: '', ville: ''),
-        pictures: row[5],
-      ));
+    var json = jsonDecode(response.body);
+    for (var item in json) {
+      listeProfiles.add(usersMapper(item));
     }
-    return malist;
+    log(listeProfiles.toString());
+    return listeProfiles;
+  }
+
+  Future<Departement> getDepartementData(var numDepartement) async {
+    String baseUrl = "http://10.0.2.2:4548/Timber/dept/$numDepartement";
+
+    var response = await http.get(Uri.parse(baseUrl));
+
+    var json = jsonDecode(response.body);
+
+    return Departement(
+        num: json[0]['num'], nom: json[0]['nom'], ville: json[0]['ville']);
+  }
+
+  Future addLikedMember(var idUser, idLiked) async {
+    return await http.post(Uri.parse('http://10.0.2.2:4548/Timber/liked'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, int>{"idUser": idUser, "idLiked": idLiked}));
+  }
+
+  Future<List<Profile>> getLikedMembers(var idUser) async {
+    List<Profile> listeLikes = [];
+    String baseUrl = "http://10.0.2.2:4548/Timber/liked/$idUser";
+
+    var response = await http.get(Uri.parse(baseUrl));
+    log(response.body);
+
+    var json = jsonDecode(response.body);
+    for (var item in json) {
+      getUserFromId(item["membre"]).then((value) => listeLikes.add(value));
+    }
+
+    return listeLikes;
   }
 }

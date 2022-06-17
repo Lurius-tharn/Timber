@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:timber/model/Profiles.dart';
 
 class Liked {

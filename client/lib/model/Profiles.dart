@@ -1,6 +1,9 @@
+// ignore_for_file: file_names
+
 import 'Departement.dart';
 
 class Profile {
+  final int userId;
   final String nom;
   final String prenom;
   final String description;
@@ -9,7 +12,8 @@ class Profile {
   final List<String> pictures;
 
   Profile(
-      {required this.nom,
+      {required this.userId,
+      required this.nom,
       required this.prenom,
       required this.description,
       required this.picture,

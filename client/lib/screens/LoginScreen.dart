@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:timber/database/bdd_controller.dart';
 import 'package:timber/screens/MainScreen.dart';
@@ -97,14 +99,16 @@ class _LoginFormStatefulWidgetState extends State<LoginForm> {
                     child: ElevatedButton(
                       onPressed: () {
                         BddController()
-                            .getUser(myController1.value, myController2.value)
+                            .login(myController1.value.text,
+                                myController2.value.text)
                             .then((value) => {
-                                  if (value)
+                                  if (!value.isNaN)
                                     {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => MainScreen()),
+                                            builder: (context) =>
+                                                MainScreen(userId: value)),
                                       )
                                     }
                                 });

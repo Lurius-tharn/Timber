@@ -1,47 +1,23 @@
+// ignore_for_file: file_names, must_be_immutable, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:timber/database/bdd_controller.dart';
 
-import '../model/Departement.dart';
 import '../model/Profiles.dart';
 import 'SwipeScreen.dart';
 
 class MainScreen extends StatelessWidget {
+  final userId;
+  var dataLenght;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
   var increment = 0;
-  static List<Profile> LikedProfiles = [
-    Profile(
-        nom: "Huscarl",
-        prenom: "Lydia",
-        description: "i am sworn to carry your burdens",
-        picture: "pic/Lydia_Housecarl.png",
-        departement: Departement(num: 95, nom: "", ville: ""),
-        pictures: [
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-        ]),
-    Profile(
-        nom: "Huscarl",
-        prenom: "Lydia",
-        description: "i am sworn to carry your burdens",
-        picture: "pic/Lydia_Housecarl.png",
-        departement: Departement(num: 95, nom: "", ville: ""),
-        pictures: [
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-          "pic/Lydia_Housecarl.png",
-        ]),
-  ];
-
-  MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Align(
         child: Column(
       children: [
@@ -51,35 +27,29 @@ class MainScreen extends StatelessWidget {
             child: Center(
                 child: FutureBuilder(
               future: BddController().getUsers(),
-              builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+              builder: (context, AsyncSnapshot<List<Profile>> snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
                     child: Column(
-                      children: [
+                      children: const [
                         CircularProgressIndicator(),
                       ],
                     ),
                   );
                 }
+                dataLenght = snapshot.data!.length;
                 return ScrollablePositionedList.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
                   itemBuilder: (context, item) => GestureDetector(
                       onTap: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                            context,
+                            MaterialPageRoute(
                               builder: (context) => SwipeScreen(
-                                    profile: Profile(
-                                        departement: Departement(
-                                            nom: '', num: 0, ville: ''),
-                                        description: '',
-                                        nom: '',
-                                        picture: '',
-                                        pictures: [],
-                                        prenom: ''),
-                                  )),
-                        );
+                                  profile: snapshot.data![item],
+                                  userId: userId),
+                            ));
                       },
                       child: Container(
                         height: 250,
@@ -88,7 +58,8 @@ class MainScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.blue, width: 5),
                         ),
-                        child: Image.asset(snapshot.data![item]!["photo"]),
+                        child: Image.asset(
+                            "assets/pic/${snapshot.data![item].picture}"),
                       )),
                   itemScrollController: itemScrollController,
                   itemPositionsListener: itemPositionsListener,
@@ -98,9 +69,7 @@ class MainScreen extends StatelessWidget {
         Center(
           child: ElevatedButton(
             onPressed: () {
-              increment >= LikedProfiles.length
-                  ? increment = 0
-                  : increment += 2;
+              increment >= dataLenght ? increment = 0 : increment += 2;
 
               itemScrollController.scrollTo(
                   index: increment,
