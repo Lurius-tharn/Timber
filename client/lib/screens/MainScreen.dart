@@ -25,6 +25,8 @@ class MainScreen extends StatelessWidget {
             width: 600.0,
             height: 500.0,
             child: Center(
+                // Appel a un service Future, afin de récupérer les données
+
                 child: FutureBuilder(
               future: BddController().getUsers(),
               builder: (context, AsyncSnapshot<List<Profile>> snapshot) {

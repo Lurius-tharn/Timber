@@ -2,6 +2,8 @@
 
 import 'Departement.dart';
 
+/// Classe Profile representant un model d'un profile'
+
 class Profile {
   final int userId;
   final String nom;

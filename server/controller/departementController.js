@@ -9,7 +9,6 @@ module.exports = {
             if (err) {
                 return res.status(400).json({
                     status: 'error',
-            
                 });
             }
             res.send(rows)

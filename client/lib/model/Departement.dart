@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+/// Classe Département representant un model de département
 class Departement {
   final int num;
   final String nom;

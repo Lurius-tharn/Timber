@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c30705-5635-45f9-a886-872e2ed0a41e" name="Changes" comment="La petite Lydia">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/components/customFormField.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/components/customFormField.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/database/bdd_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/database/bdd_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/model/Departement.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/model/Departement.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/model/Liked.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/model/Liked.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/model/Profiles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/model/Profiles.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/screens/DetailledProfileScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/screens/DetailledProfileScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/screens/LikedProfileScren.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/screens/LikedProfileScren.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/lib/screens/LoginScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/screens/LoginScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/screens/MainScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/screens/MainScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/lib/screens/SwipeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/screens/SwipeScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/departementController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/departementController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/Departements.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/Departements.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/Members.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/Members.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/TimberRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/TimberRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +38,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="format.on.save" value="true" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
@@ -68,7 +59,7 @@
       <recent name="D:\Mes documents\GitHub\Timber\lib\screens" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.main.dart (1)">
+  <component name="RunManager" selected="Flutter.main.dart">
     <configuration name="conn.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" temporary="true" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/lib/database/conn.dart" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
@@ -82,14 +73,11 @@
       <option name="filePath" value="$PROJECT_DIR$/lib/screens/main.dart" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Flutter.main.dart (1)" />
-        <item itemvalue="Dart Command Line App.conn.dart" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e1c30705-5635-45f9-a886-872e2ed0a41e" name="Changes" comment="" />

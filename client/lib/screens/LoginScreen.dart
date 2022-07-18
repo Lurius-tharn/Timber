@@ -112,18 +112,6 @@ class _LoginFormStatefulWidgetState extends State<LoginForm> {
                                       )
                                     }
                                 });
-
-                        // BddController().getAllStudent().then((value) => {
-                        //       log(value ? "oui" : "non"),
-                        //       if (value)
-                        //         {
-                        //           Navigator.push(
-                        //             context,
-                        //             MaterialPageRoute(
-                        //                 builder: (context) => MainScreen()),
-                        //           )
-                        //         }
-                        //     });
                       },
                       child: const Text('Se connecter'),
                     ),
